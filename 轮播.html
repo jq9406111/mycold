@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        html,
+        body {
+            overflow: hidden;
+        }
+        
+        .box {
+            width: 375px;
+            height: auto;
+            position: relative;
+        }
+        
+        img {
+            width: 100%;
+            height: 160px;
+        }
+        
+        ol {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        ol li {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        
+        ol li.on {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="./img/1.jpg" alt="" class="imgs">
+        <ol></ol>
+    </div>
+
+    <script src="./top.js"></script>
+    <script>
+        //照片
+        var arr = ["./img/1.jpg", "./img/2.jpg", "./img/3.jpg", "./img/4.jpg", "./img/5.jpg"]
+        var img = document.querySelector('.imgs')
+        var ol = document.querySelector('ol')
+            // 下标
+        var index = 0
+            // 循环
+        for (var i = 0; i < arr.length; i++) {
+            ol.innerHTML += `<li class="${i===0?"on":""}"></li>`
+        }
+
+        mot.swiper(img, "right", function() {
+            ol.children[index].classList.remove('on');
+            index++;
+            index %= arr.length;
+            img.src = arr[index];
+            ol.children[index].classList.add('on');
+        });
+        mot.swiper(img, "left", function() {
+            ol.children[index].classList.remove('on');
+            if (index === 0) index = arr.length;
+            index--;
+            img.src = arr[index];
+            ol.children[index].classList.add('on');
+            console.log(index)
+        })
+    </script>
+</body>
+
+</html>
